@@ -434,6 +434,6 @@ class __TwigTemplate_8af1aeb7c85619b2880b9c7c9729dcc227c664bb3931b6dd30e1c70e5ce
         {% endif %}
     </div>
 {% endblock %}
-", "@WebProfiler/Collector/http_client.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/http_client.html.twig");
+", "@WebProfiler/Collector/http_client.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/http_client.html.twig");
     }
 }

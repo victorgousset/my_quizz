@@ -155,6 +155,6 @@ class __TwigTemplate_bbf940213580baff2b61f821900723d2f982af68eab2f7a704ea6dad827
 {% block panel %}
     {{ render(path('_profiler_router', { token: token })) }}
 {% endblock %}
-", "@WebProfiler/Collector/router.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
+", "@WebProfiler/Collector/router.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/router.html.twig");
     }
 }

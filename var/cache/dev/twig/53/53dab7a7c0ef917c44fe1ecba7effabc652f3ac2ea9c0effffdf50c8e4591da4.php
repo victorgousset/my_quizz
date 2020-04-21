@@ -898,6 +898,6 @@ class __TwigTemplate_7c927d1f98d88e5cec9a3a745e335369270cbff4335bb94fe0c3134f5dc
         </tbody>
     </table>
 {% endmacro %}
-", "@WebProfiler/Collector/translation.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
+", "@WebProfiler/Collector/translation.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/translation.html.twig");
     }
 }

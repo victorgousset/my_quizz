@@ -56,9 +56,9 @@ class __TwigTemplate_01c127e1e8d2942d5a5977c805c6d7973617d7217e91ef85cba880225e8
         // line 6
         $this->displayBlock('stylesheets', $context, $blocks);
         // line 7
-        echo "    </head>
+        echo "        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">
+    </head>
     <body>
-    <h1>AAA</h1>
         ";
         // line 10
         $this->displayBlock('body', $context, $blocks);
@@ -168,13 +168,13 @@ class __TwigTemplate_01c127e1e8d2942d5a5977c805c6d7973617d7217e91ef85cba880225e8
         <meta charset=\"UTF-8\">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">
     </head>
     <body>
-    <h1>AAA</h1>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
-", "base.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/templates/base.html.twig");
+", "base.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/templates/base.html.twig");
     }
 }

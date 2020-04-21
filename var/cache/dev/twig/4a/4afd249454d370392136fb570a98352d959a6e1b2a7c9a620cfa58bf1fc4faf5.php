@@ -102,6 +102,6 @@ class __TwigTemplate_7e7aba5996e1e78a7543af8072efc78293a1be3a25c3bc5d393bf985d2e
     {% if link|default(false) %}</a>{% endif %}
         <div class=\"sf-toolbar-info\">{{ text|default('') }}</div>
 </div>
-", "@WebProfiler/Profiler/toolbar_item.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_item.html.twig");
+", "@WebProfiler/Profiler/toolbar_item.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/toolbar_item.html.twig");
     }
 }

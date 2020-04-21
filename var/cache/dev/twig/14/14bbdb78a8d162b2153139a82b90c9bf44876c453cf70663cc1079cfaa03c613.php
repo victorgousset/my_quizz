@@ -125,6 +125,6 @@ class __TwigTemplate_0629f7c5bf06a5e0b0e61d82ca780a3cb9328f4b6415ec1469a40a8df4b
 .exception-message-wrapper .container {
     min-height: auto;
 }
-", "@WebProfiler/Collector/exception.css.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.css.twig");
+", "@WebProfiler/Collector/exception.css.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.css.twig");
     }
 }

@@ -1289,6 +1289,6 @@ $context["voter_detail"], "vote", [], "array", false, false, false, 353), twig_c
         </table>
     {% endif %}
 {% endblock %}
-", "@Security/Collector/security.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/security-bundle/Resources/views/Collector/security.html.twig");
+", "@Security/Collector/security.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/security-bundle/Resources/views/Collector/security.html.twig");
     }
 }

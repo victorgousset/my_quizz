@@ -227,6 +227,6 @@ class __TwigTemplate_2f0ea8850a224b0f35c3bf5b05a7d41243e690ec7753f01fde17ce2d2d6
         </div>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/exception.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
+", "@WebProfiler/Collector/exception.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/exception.html.twig");
     }
 }

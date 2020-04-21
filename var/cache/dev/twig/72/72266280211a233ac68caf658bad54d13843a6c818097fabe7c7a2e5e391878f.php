@@ -471,6 +471,6 @@ class __TwigTemplate_6d1a9bdc243b3dc7064a2692e515e94ada557ba373ac63a9a379a12ced2
         </div>
     {% endif %}
 {% endblock %}
-", "@WebProfiler/Collector/twig.html.twig", "/Users/victorgousset/Desktop/laravel/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/twig.html.twig");
+", "@WebProfiler/Collector/twig.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/vendor/symfony/web-profiler-bundle/Resources/views/Collector/twig.html.twig");
     }
 }
