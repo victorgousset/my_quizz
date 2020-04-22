@@ -62,7 +62,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 ";
         // line 11
         $this->displayBlock('body', $context, $blocks);
-        // line 16
+        // line 23
         echo "
 </body>
 </html>";
@@ -123,8 +123,15 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 
         // line 12
         echo "    <div class=\"container\">
-        <h1>Le chiffre est</h1>
+        <h1>Bienvenu sur My_Quizz</h1>
     </div>
+
+
+<a href=\"#\"><button class=\"btn btn-primary\">10 Questions</button></a>
+    <br><br>
+    <a href=\"#\"><button class=\"btn btn-primary\">20 Questions</button></a>
+
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -141,7 +148,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 
     public function getDebugInfo()
     {
-        return array (  125 => 12,  115 => 11,  97 => 6,  78 => 5,  66 => 16,  64 => 11,  58 => 7,  56 => 6,  52 => 5,  46 => 1,);
+        return array (  125 => 12,  115 => 11,  97 => 6,  78 => 5,  66 => 23,  64 => 11,  58 => 7,  56 => 6,  52 => 5,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -158,8 +165,15 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 
 {% block body %}
     <div class=\"container\">
-        <h1>Le chiffre est</h1>
+        <h1>Bienvenu sur My_Quizz</h1>
     </div>
+
+
+<a href=\"#\"><button class=\"btn btn-primary\">10 Questions</button></a>
+    <br><br>
+    <a href=\"#\"><button class=\"btn btn-primary\">20 Questions</button></a>
+
+
 {% endblock %}
 
 </body>

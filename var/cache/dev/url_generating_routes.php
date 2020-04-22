@@ -16,7 +16,13 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     'app_home_index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], []],
+    'app_home_email' => [[], ['_controller' => 'App\\Controller\\HomeController::email'], [], [['text', '/email']], [], []],
     'app_property_index' => [[], ['_controller' => 'App\\Controller\\PropertyController::index'], [], [['text', '/question']], [], []],
     'app_question_listall' => [[], ['_controller' => 'App\\Controller\\QuestionController::listAll'], [], [['text', '/list']], [], []],
     'id' => [['id'], ['_controller' => 'App\\Controller\\QuestionController::index'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/list']], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], []],
+    'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], []],
+    'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], []],
+    'app_user_profil' => [[], ['_controller' => 'App\\Controller\\UserController::profil'], [], [['text', '/profil']], [], []],
+    'profil' => [[], ['_controller' => 'App\\Controller\\UserController::profil'], [], [['text', '/profil']], [], []],
 ];
