@@ -7,6 +7,7 @@ use App\Entity\Question;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function Sodium\compare;
 
 class QuestionController extends AbstractController
 {
@@ -44,6 +45,38 @@ class QuestionController extends AbstractController
         $a = $question->getQuestion();
 
         return new Response($a);
+    }
+
+    /**
+     * @Route("/question/{nombre}")
+     * @return Response
+     */
+
+    public function getXQuestion($nombre)
+    {
+        if ($nombre > 109)
+        {
+            return null;
+        }
+
+        $question = [];
+
+        $getInfo = new Question();
+
+        for ($i = 1; $i <= $nombre; $i++)
+        {
+            $id = rand(1, 109);
+
+            $valuePush = $id;
+
+            $questionString = $this->getDoctrine()->getRepository(Question::class)->find($valuePush);
+            $s = $questionString->getQuestion();
+            $valuePush .= " - " . $s;
+
+            array_push($question, $valuePush);
+        }
+
+        return $this->render('pages/question.html.twig', compact('question'));
     }
 
 }

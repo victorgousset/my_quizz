@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Security\LoginFormAuthenticator;
+use Swift_Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
+    public function register(Swift_Mailer $mailer, Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -37,6 +38,20 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
 
             // do anything else you need here, like send an email
+
+            $mail = $user->getEmail();
+
+            $message = (new \Swift_Message('Mail d inscription'))
+                ->setFrom('my_quizz@mail.com')
+                ->setTo($mail)
+                ->setBody(
+                    $this->renderView(
+                        'emails/registration.html.twig',
+                        ['name' => "test"]
+                    ),
+                    'text/html'
+                );
+            $mailer->send($message);
 
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,

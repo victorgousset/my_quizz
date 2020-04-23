@@ -127,9 +127,9 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
     </div>
 
 
-<a href=\"#\"><button class=\"btn btn-primary\">10 Questions</button></a>
+<a href=\"question/10\"><button class=\"btn btn-primary\">10 Questions</button></a>
     <br><br>
-    <a href=\"#\"><button class=\"btn btn-primary\">20 Questions</button></a>
+    <a href=\"question/20\"><button class=\"btn btn-primary\">20 Questions</button></a>
 
 
 ";
@@ -169,9 +169,9 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
     </div>
 
 
-<a href=\"#\"><button class=\"btn btn-primary\">10 Questions</button></a>
+<a href=\"question/10\"><button class=\"btn btn-primary\">10 Questions</button></a>
     <br><br>
-    <a href=\"#\"><button class=\"btn btn-primary\">20 Questions</button></a>
+    <a href=\"question/20\"><button class=\"btn btn-primary\">20 Questions</button></a>
 
 
 {% endblock %}

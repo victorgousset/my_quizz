@@ -24,10 +24,15 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'body' => [$this, 'block_body'],
         ];
+    }
+
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "base.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = [])
@@ -39,8 +44,8 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "User/profil.html.twig"));
 
-        // line 1
-        echo "profil";
+        $this->parent = $this->loadTemplate("base.html.twig", "User/profil.html.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
@@ -49,18 +54,105 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
 
     }
 
+    // line 3
+    public function block_body($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
+
+        // line 4
+        echo "
+";
+        // line 5
+        if (0 === twig_compare(twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 5, $this->source); })()), "user", [], "any", false, false, false, 5), null)) {
+            // line 6
+            echo "    <div class=\"mb-3\">
+        Vous n'êtes pas connecté, <a href=\"";
+            // line 7
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
+            echo "\">Connexion</a>
+    </div>
+";
+        }
+        // line 10
+        echo "
+";
+        // line 11
+        if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11)) {
+            // line 12
+            echo "
+    <h1>Mon profil</h1>
+
+    <ul>
+        <li>Mail: ";
+            // line 16
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "user", [], "any", false, false, false, 16), "username", [], "any", false, false, false, 16), "html", null, true);
+            echo "</li>
+    </ul>
+
+    <a href=\"";
+            // line 19
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
+            echo "\"><button class=\"btn btn-danger\">Déconexion</button></a>
+
+
+";
+        }
+        // line 23
+        echo "
+";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
     public function getTemplateName()
     {
         return "User/profil.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  43 => 1,);
+        return array (  106 => 23,  99 => 19,  93 => 16,  87 => 12,  85 => 11,  82 => 10,  76 => 7,  73 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("profil", "User/profil.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/templates/User/profil.html.twig");
+        return new Source("{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if app.user == null %}
+    <div class=\"mb-3\">
+        Vous n'êtes pas connecté, <a href=\"{{ path('login') }}\">Connexion</a>
+    </div>
+{% endif %}
+
+{% if app.user %}
+
+    <h1>Mon profil</h1>
+
+    <ul>
+        <li>Mail: {{ app.user.username }}</li>
+    </ul>
+
+    <a href=\"{{ path('app_logout') }}\"><button class=\"btn btn-danger\">Déconexion</button></a>
+
+
+{% endif %}
+
+{% endblock %}", "User/profil.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/templates/User/profil.html.twig");
     }
 }

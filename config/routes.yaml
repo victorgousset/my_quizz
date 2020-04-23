@@ -4,3 +4,5 @@
 profil:
     path: /profil
     controller: App\Controller\UserController::profil
+login:
+    path: /login

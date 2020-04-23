@@ -40,7 +40,7 @@ class __TwigTemplate_a2e33e9bfdf3d55bfe996c7517a71812555c52f6b9953ba5049546422ef
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "emails/registration.html.twig"));
 
         // line 1
-        echo "TEST MAIL";
+        echo "MAIL INSCRIPTION";
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
 
@@ -61,6 +61,6 @@ class __TwigTemplate_a2e33e9bfdf3d55bfe996c7517a71812555c52f6b9953ba5049546422ef
 
     public function getSourceContext()
     {
-        return new Source("TEST MAIL", "emails/registration.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/templates/emails/registration.html.twig");
+        return new Source("MAIL INSCRIPTION", "emails/registration.html.twig", "/Users/victorgousset/Desktop/dev/my_quiz/templates/emails/registration.html.twig");
     }
 }

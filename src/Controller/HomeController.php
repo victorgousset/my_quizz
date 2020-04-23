@@ -16,33 +16,7 @@ class HomeController extends AbstractController
 
     public function index()
     {
-        $test = 5;
-        return $this->render('pages/home.html.twig', ['chiffre' => $test]);
+        return $this->render('pages/home.html.twig');
     }
-
-    /**
-     * @Route("/email")
-     * @param Swift_Mailer $mailer
-     */
-
-    public function email(Swift_Mailer $mailer)
-    {
-        $message = (new \Swift_Message('Hello Email'))
-            ->setFrom('envoyer@example.com')
-            ->setTo('mail@example.com')
-            ->setBody(
-                $this->renderView(
-                // templates/emails/registration.html.twig
-                    'emails/registration.html.twig',
-                    ['name' => "test"]
-                ),
-                'text/html'
-            );
-
-        $mailer->send($message);
-
-        return new Response('ok');
-    }
-
 
 }

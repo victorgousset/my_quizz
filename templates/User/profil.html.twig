@@ -1,1 +1,24 @@
-profil
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if app.user == null %}
+    <div class="mb-3">
+        Vous n'êtes pas connecté, <a href="{{ path('login') }}">Connexion</a>
+    </div>
+{% endif %}
+
+{% if app.user %}
+
+    <h1>Mon profil</h1>
+
+    <ul>
+        <li>Mail: {{ app.user.username }}</li>
+    </ul>
+
+    <a href="{{ path('app_logout') }}"><button class="btn btn-danger">Déconexion</button></a>
+
+
+{% endif %}
+
+{% endblock %}

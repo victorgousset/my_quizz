@@ -102,12 +102,12 @@ class __TwigTemplate_48146fc60d9a6746b8408c68655ff149da2a5717004b2dee5ae314815a7
         if (twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 11, $this->source); })()), "user", [], "any", false, false, false, 11)) {
             // line 12
             echo "        <div class=\"mb-3\">
-            You are logged in as ";
+            Vous êtes déjà connecté en tant que ";
             // line 13
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "user", [], "any", false, false, false, 13), "username", [], "any", false, false, false, 13), "html", null, true);
             echo ", <a href=\"";
-            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
-            echo "\">Logout</a>
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("profil");
+            echo "\">Profil</a>
         </div>
     ";
         }
@@ -174,7 +174,7 @@ class __TwigTemplate_48146fc60d9a6746b8408c68655ff149da2a5717004b2dee5ae314815a7
 
     {% if app.user %}
         <div class=\"mb-3\">
-            You are logged in as {{ app.user.username }}, <a href=\"{{ path('app_logout') }}\">Logout</a>
+            Vous êtes déjà connecté en tant que {{ app.user.username }}, <a href=\"{{ path('profil') }}\">Profil</a>
         </div>
     {% endif %}
 
