@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 use App\Entity\Question;
+use App\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -62,6 +63,7 @@ class QuestionController extends AbstractController
         $question = [];
 
         $getInfo = new Question();
+        $getReponse = new Reponse();
 
         for ($i = 1; $i <= $nombre; $i++)
         {
@@ -69,9 +71,18 @@ class QuestionController extends AbstractController
 
             $valuePush = $id;
 
-            $questionString = $this->getDoctrine()->getRepository(Question::class)->find($valuePush);
-            $s = $questionString->getQuestion();
-            $valuePush .= " - " . $s;
+            $questionString = $this->getDoctrine()->getRepository(Question::class)
+                ->find($valuePush);
+            $q = $questionString->getQuestion();
+            //$reponseString = $this->getDoctrine()->getRepository(Reponse::class)
+              //  ->findOneBy(['id_question' => $valuePush, 'reponse_expected' => 1]);
+            //$r = $reponseString->getReponse();
+
+            $MauvaiseReponseString = $this->getDoctrine()->getRepository(Reponse::class)
+              ->findBy(['id_question' => $valuePush, "reponse_expected" => 0]);
+
+            $valuePush .= " - " . $q . "    " .  "Reponse: " ;
+
 
             array_push($question, $valuePush);
         }
