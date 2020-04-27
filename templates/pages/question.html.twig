@@ -10,10 +10,10 @@
 
 {% block body %}
 
-    {% for questions in question %}
+    {% for questionStrings in questionString %}
 
         <ul>
-            <li>{{ questions }}</li>
+            <li>{{ questionStrings.question }}</li>
         </ul>
 
     {% endfor %}

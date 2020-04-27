@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use Swift_Mailer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,7 +17,8 @@ class HomeController extends AbstractController
 
     public function index()
     {
-        return $this->render('pages/home.html.twig');
+        $categorie = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+        return $this->render('pages/home.html.twig', compact('categorie'));
     }
 
 }

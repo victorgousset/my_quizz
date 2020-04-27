@@ -125,21 +125,21 @@ class __TwigTemplate_f354b6a195476488f93f52477d6301a983f6c3002e0148871ccf7d9e970
     ";
         // line 13
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["question"]) || array_key_exists("question", $context) ? $context["question"] : (function () { throw new RuntimeError('Variable "question" does not exist.', 13, $this->source); })()));
-        foreach ($context['_seq'] as $context["_key"] => $context["questions"]) {
+        $context['_seq'] = twig_ensure_traversable((isset($context["questionString"]) || array_key_exists("questionString", $context) ? $context["questionString"] : (function () { throw new RuntimeError('Variable "questionString" does not exist.', 13, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["questionStrings"]) {
             // line 14
             echo "
         <ul>
             <li>";
             // line 16
-            echo twig_escape_filter($this->env, $context["questions"], "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["questionStrings"], "question", [], "any", false, false, false, 16), "html", null, true);
             echo "</li>
         </ul>
 
     ";
         }
         $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['questions'], $context['_parent'], $context['loop']);
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['questionStrings'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 20
         echo "
@@ -176,10 +176,10 @@ class __TwigTemplate_f354b6a195476488f93f52477d6301a983f6c3002e0148871ccf7d9e970
 
 {% block body %}
 
-    {% for questions in question %}
+    {% for questionStrings in questionString %}
 
         <ul>
-            <li>{{ questions }}</li>
+            <li>{{ questionStrings.question }}</li>
         </ul>
 
     {% endfor %}

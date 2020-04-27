@@ -16,16 +16,6 @@ return [
         '/' => [[['_route' => 'app_home_index', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/question' => [[['_route' => 'app_property_index', '_controller' => 'App\\Controller\\PropertyController::index'], null, null, null, false, false, null]],
         '/list' => [[['_route' => 'app_question_listall', '_controller' => 'App\\Controller\\QuestionController::listAll'], null, null, null, false, false, null]],
-        '/register' => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], null, null, null, false, false, null]],
-        '/login' => [
-            [['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], null, null, null, false, false, null],
-            [['_route' => 'login'], null, null, null, false, false, null],
-        ],
-        '/logout' => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], null, null, null, false, false, null]],
-        '/profil' => [
-            [['_route' => 'app_user_profil', '_controller' => 'App\\Controller\\UserController::profil'], null, null, null, false, false, null],
-            [['_route' => 'profil', '_controller' => 'App\\Controller\\UserController::profil'], null, null, null, false, false, null],
-        ],
     ],
     [ // $regexpList
         0 => '{^(?'
@@ -45,8 +35,22 @@ return [
                     .')'
                 .')'
                 .'|/list/([^/]++)(*:183)'
-                .'|/question/([^/]++)(*:209)'
-                .'|/profil/([^/]++)(*:233)'
+                .'|/([^/]++)(?'
+                    .'|(*:203)'
+                    .'|/([^/]++)(*:220)'
+                .')'
+                .'|/register(*:238)'
+                .'|/log(?'
+                    .'|in(?'
+                        .'|(*:258)'
+                    .')'
+                    .'|out(*:270)'
+                .')'
+                .'|/profil(?'
+                    .'|(*:289)'
+                    .'|/([^/]++)(*:306)'
+                    .'|(*:314)'
+                .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -58,9 +62,18 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         183 => [[['_route' => 'id', '_controller' => 'App\\Controller\\QuestionController::index'], ['id'], null, null, false, true, null]],
-        209 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['nombre'], null, null, false, true, null]],
-        233 => [
-            [['_route' => 'app_user_profilid', '_controller' => 'App\\Controller\\UserController::profilID'], ['id'], null, null, false, true, null],
+        203 => [[['_route' => 'app_question_selectxquestion', '_controller' => 'App\\Controller\\QuestionController::selectXQuestion'], ['categorie'], null, null, false, true, null]],
+        220 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
+        238 => [[['_route' => 'app_register', '_controller' => 'App\\Controller\\RegistrationController::register'], [], null, null, false, false, null]],
+        258 => [
+            [['_route' => 'app_login', '_controller' => 'App\\Controller\\SecurityController::login'], [], null, null, false, false, null],
+            [['_route' => 'login'], [], null, null, false, false, null],
+        ],
+        270 => [[['_route' => 'app_logout', '_controller' => 'App\\Controller\\SecurityController::logout'], [], null, null, false, false, null]],
+        289 => [[['_route' => 'app_user_profil', '_controller' => 'App\\Controller\\UserController::profil'], [], null, null, false, false, null]],
+        306 => [[['_route' => 'app_user_profilid', '_controller' => 'App\\Controller\\UserController::profilID'], ['id'], null, null, false, true, null]],
+        314 => [
+            [['_route' => 'profil', '_controller' => 'App\\Controller\\UserController::profil'], [], null, null, false, false, null],
             [null, null, null, null, false, false, 0],
         ],
     ],

@@ -14,9 +14,13 @@
     </div>
 
 
-<a href="question/10"><button class="btn btn-primary">10 Questions</button></a>
-    <br><br>
-    <a href="question/20"><button class="btn btn-primary">20 Questions</button></a>
+    {% for categories in categorie %}
+
+        <ul>
+            <li><a href="/{{ categories.id }}"><button class="btn btn-primary">{{ categories.name }}</button></a></li>
+        </ul>
+
+    {% endfor %}
 
 
 {% endblock %}

@@ -62,7 +62,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 ";
         // line 11
         $this->displayBlock('body', $context, $blocks);
-        // line 23
+        // line 27
         echo "
 </body>
 </html>";
@@ -127,10 +127,29 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
     </div>
 
 
-<a href=\"question/10\"><button class=\"btn btn-primary\">10 Questions</button></a>
-    <br><br>
-    <a href=\"question/20\"><button class=\"btn btn-primary\">20 Questions</button></a>
+    ";
+        // line 17
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["categorie"]) || array_key_exists("categorie", $context) ? $context["categorie"] : (function () { throw new RuntimeError('Variable "categorie" does not exist.', 17, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["categories"]) {
+            // line 18
+            echo "
+        <ul>
+            <li><a href=\"/";
+            // line 20
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["categories"], "id", [], "any", false, false, false, 20), "html", null, true);
+            echo "\"><button class=\"btn btn-primary\">";
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["categories"], "name", [], "any", false, false, false, 20), "html", null, true);
+            echo "</button></a></li>
+        </ul>
 
+    ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['categories'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 24
+        echo "
 
 ";
         
@@ -148,7 +167,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
 
     public function getDebugInfo()
     {
-        return array (  125 => 12,  115 => 11,  97 => 6,  78 => 5,  66 => 23,  64 => 11,  58 => 7,  56 => 6,  52 => 5,  46 => 1,);
+        return array (  152 => 24,  140 => 20,  136 => 18,  132 => 17,  125 => 12,  115 => 11,  97 => 6,  78 => 5,  66 => 27,  64 => 11,  58 => 7,  56 => 6,  52 => 5,  46 => 1,);
     }
 
     public function getSourceContext()
@@ -169,9 +188,13 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
     </div>
 
 
-<a href=\"question/10\"><button class=\"btn btn-primary\">10 Questions</button></a>
-    <br><br>
-    <a href=\"question/20\"><button class=\"btn btn-primary\">20 Questions</button></a>
+    {% for categories in categorie %}
+
+        <ul>
+            <li><a href=\"/{{ categories.id }}\"><button class=\"btn btn-primary\">{{ categories.name }}</button></a></li>
+        </ul>
+
+    {% endfor %}
 
 
 {% endblock %}

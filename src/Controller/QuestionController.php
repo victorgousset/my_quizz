@@ -3,12 +3,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\Question;
 use App\Entity\Reponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function Sodium\compare;
 
 class QuestionController extends AbstractController
 {
@@ -49,45 +49,88 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/question/{nombre}")
+     * @Route("/{categorie}")
      * @return Response
      */
 
-    public function getXQuestion($nombre)
+    public function selectXQuestion($categorie)
     {
+        $verifID = $this->getDoctrine()->getRepository(Categorie::class)->find($categorie);
+
+        if ($verifID == null)
+        {
+            return $this->redirect('/');
+        }
+
+        return $this->render('pages/select_x_question.html.twig', compact('categorie'));
+    }
+
+    /**
+     * @Route("/{categorie}/{nombre}")
+     * @return Response
+     */
+
+    public function getXQuestion($categorie, $nombre)
+    {
+        $verifID = $this->getDoctrine()->getRepository(Categorie::class)->find($categorie);
+
+        if ($verifID == null)
+        {
+            return $this->redirect('/');
+        }
+
         if ($nombre > 109)
         {
-            return null;
+            return $this->render('pages/404.html.twig');
         }
 
         $question = [];
+        $reponse = [];
 
-        $getInfo = new Question();
-        $getReponse = new Reponse();
+        $questionString = $this->getDoctrine()->getRepository(Question::class)
+            ->findBy(['id_categorie' => $categorie], null, $nombre);
 
-        for ($i = 1; $i <= $nombre; $i++)
+        for ($i = 0; $i < $nombre; $i++)
         {
-            $id = rand(1, 109);
+            $id = $questionString[$i]->getId();
+            array_push($reponse, $id);
+        }
 
-            $valuePush = $id;
+        var_dump($reponse);
 
-            $questionString = $this->getDoctrine()->getRepository(Question::class)
-                ->find($valuePush);
-            $q = $questionString->getQuestion();
+        //$Reponse = $this->getDoctrine()->getRepository(Reponse::class)->findBy()
+
+        return $this->render('pages/question.html.twig', compact('questionString'));
+
+
+
+        //for ($i = 1; $i <= $nombre; $i++)
+        //{
+            //$id = rand(1, 109);
+
+            //$valuePush = $id;
+
+            //$questionString = $this->getDoctrine()->getRepository(Question::class)->findBy(['id_categorie' => $categorie], null, $nombre);
+            //$q = $questionString->getQuestion();
             //$reponseString = $this->getDoctrine()->getRepository(Reponse::class)
               //  ->findOneBy(['id_question' => $valuePush, 'reponse_expected' => 1]);
             //$r = $reponseString->getReponse();
-
-            $MauvaiseReponseString = $this->getDoctrine()->getRepository(Reponse::class)
-              ->findBy(['id_question' => $valuePush, "reponse_expected" => 0]);
-
-            $valuePush .= " - " . $q . "    " .  "Reponse: " ;
+            //FIND BY
+            //$MauvaiseReponseString = $this->getDoctrine()->getRepository(Reponse::class)->findBy(['id_question' => $valuePush, "reponse_expected" => 0]);
 
 
-            array_push($question, $valuePush);
-        }
+            //$reponse = $MauvaiseReponseString[0]->getQuestion():
+            //$valuePush .= " - " . $questionString . "    " .  "Reponse: " ;
 
-        return $this->render('pages/question.html.twig', compact('question'));
+
+            //array_push($question, $questionString);
+        //}
+
+        //$questionString = $this->getDoctrine()->getRepository(Question::class)->findBy(['id_categorie' => $categorie], null, $nombre);
+
+        //return $this->render('pages/question.html.twig', compact('questionString'));
+        //return $this->render('pages/question.html.twig', compact(['question' => $question, 'mauvaise_reponse' => '']));
+
     }
 
 }
