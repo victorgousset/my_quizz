@@ -66,7 +66,7 @@ final class Versions
   'symfony/filesystem' => 'v5.0.7@ca3b87dd09fff9b771731637f5379965fbfab420',
   'symfony/finder' => 'v5.0.7@600a52c29afc0d1caa74acbec8d3095ca7e9910d',
   'symfony/flex' => 'v1.6.2@e4f5a2653ca503782a31486198bd1dd1c9a47f83',
-  'symfony/form' => 'v5.0.7@2b8e26176c4b88ac44d822bb78dad3403d37ff83',
+  'symfony/form' => 'v5.0.8@a3ec37026c13851565599522f7c1d26cdcdbf7dd',
   'symfony/framework-bundle' => 'v5.0.7@b1807be65ff05c21d47094e77b6c5a4246284c33',
   'symfony/http-client' => 'v5.0.7@14d386ae55b699ea9a0ddb872fa5f3e35219bba8',
   'symfony/http-client-contracts' => 'v2.0.1@378868b61b85c5cac6822d4f84e26999c9f2e881',

@@ -135,7 +135,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
             // line 18
             echo "
         <ul>
-            <li><a href=\"/";
+            <li><a href=\"question/";
             // line 20
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["categories"], "id", [], "any", false, false, false, 20), "html", null, true);
             echo "\"><button class=\"btn btn-primary\">";
@@ -191,7 +191,7 @@ class __TwigTemplate_639d6447a80ae1b3e746f232b32bab137e13dcbb3188adb01e6d0c1593e
     {% for categories in categorie %}
 
         <ul>
-            <li><a href=\"/{{ categories.id }}\"><button class=\"btn btn-primary\">{{ categories.name }}</button></a></li>
+            <li><a href=\"question/{{ categories.id }}\"><button class=\"btn btn-primary\">{{ categories.name }}</button></a></li>
         </ul>
 
     {% endfor %}

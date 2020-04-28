@@ -3467,17 +3467,17 @@
     },
     {
         "name": "symfony/form",
-        "version": "v5.0.7",
-        "version_normalized": "5.0.7.0",
+        "version": "v5.0.8",
+        "version_normalized": "5.0.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/form.git",
-            "reference": "2b8e26176c4b88ac44d822bb78dad3403d37ff83"
+            "reference": "a3ec37026c13851565599522f7c1d26cdcdbf7dd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/form/zipball/2b8e26176c4b88ac44d822bb78dad3403d37ff83",
-            "reference": "2b8e26176c4b88ac44d822bb78dad3403d37ff83",
+            "url": "https://api.github.com/repos/symfony/form/zipball/a3ec37026c13851565599522f7c1d26cdcdbf7dd",
+            "reference": "a3ec37026c13851565599522f7c1d26cdcdbf7dd",
             "shasum": ""
         },
         "require": {
@@ -3518,7 +3518,7 @@
             "symfony/twig-bridge": "For templating with Twig.",
             "symfony/validator": "For form validation."
         },
-        "time": "2020-03-27T16:56:45+00:00",
+        "time": "2020-04-28T17:58:55+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3549,7 +3549,21 @@
             }
         ],
         "description": "Symfony Form Component",
-        "homepage": "https://symfony.com"
+        "homepage": "https://symfony.com",
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
     },
     {
         "name": "symfony/framework-bundle",

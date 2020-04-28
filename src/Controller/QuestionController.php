@@ -49,12 +49,14 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{categorie}")
+     * @Route("question/{categorie}")
      * @return Response
      */
 
     public function selectXQuestion($categorie)
     {
+        $count = [];
+
         $verifID = $this->getDoctrine()->getRepository(Categorie::class)->find($categorie);
 
         if ($verifID == null)
@@ -66,7 +68,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("/{categorie}/{nombre}")
+     * @Route("question/{categorie}/{nombre}")
      * @return Response
      */
 
