@@ -195,7 +195,14 @@
     <parameter key="doctrine_migrations.name">Application Migrations</parameter>
     <parameter key="doctrine_migrations.custom_template">null</parameter>
     <parameter key="doctrine_migrations.organize_migrations">false</parameter>
-    <parameter key="security.role_hierarchy.roles" type="collection"/>
+    <parameter key="security.role_hierarchy.roles" type="collection">
+      <parameter key="ROLE_EDITOR" type="collection">
+        <parameter>ROLE_USER</parameter>
+      </parameter>
+      <parameter key="ROLE_ADMIN" type="collection">
+        <parameter>ROLE_EDITOR</parameter>
+      </parameter>
+    </parameter>
     <parameter key="security.access.denied_url">null</parameter>
     <parameter key="security.authentication.manager.erase_credentials">true</parameter>
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
@@ -324,6 +331,13 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true">
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\AdminController" class="App\Controller\AdminController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\AdminController"/>
+      </call>
+    </service>
     <service id="App\Controller\HomeController" class="App\Controller\HomeController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -366,10 +380,16 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\UserController"/>
       </call>
     </service>
+    <service id="App\Form\CreateMyQuizz" class="App\Form\CreateMyQuizz" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ProfilUpdateForm" class="App\Form\ProfilUpdateForm" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\UpdateUserByAdmin" class="App\Form\UpdateUserByAdmin" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" autoconfigure="true">
@@ -802,8 +822,10 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\CreateMyQuizz</argument>
         <argument>App\Form\ProfilUpdateForm</argument>
         <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\UpdateUserByAdmin</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
@@ -1127,7 +1149,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.IFR7NM8"/>
+      <argument type="service" id=".service_locator.2xj38p9"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3873,14 +3895,15 @@
       <argument type="service" id="request_stack"/>
     </service>
     <service id="security.role_hierarchy" class="Symfony\Component\Security\Core\Role\RoleHierarchy" public="false">
-      <argument type="collection"/>
-    </service>
-    <service id="security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleVoter" public="false">
-      <tag name="security.voter" priority="245"/>
+      <argument>%security.role_hierarchy.roles%</argument>
     </service>
     <service id="security.access.authenticated_voter" class="Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter" public="false">
       <tag name="security.voter" priority="250"/>
       <argument type="service" id="security.authentication.trust_resolver"/>
+    </service>
+    <service id="security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter" public="false">
+      <tag name="security.voter" priority="245"/>
+      <argument type="service" id="security.role_hierarchy"/>
     </service>
     <service id="security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter" public="false">
       <tag name="security.voter" priority="245"/>
@@ -3989,7 +4012,22 @@
       <argument type="service" id="security.authentication.retry_entry_point"/>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
     </service>
-    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false"/>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.5dJADCx"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.qecNRWT"/>
+        <argument type="collection">
+          <argument>ROLE_USER</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
@@ -4395,6 +4433,12 @@
         <argument key="security.firewall.map.context.dev" type="service" id="security.firewall.map.context.dev"/>
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
+    </service>
+    <service id=".security.request_matcher.5dJADCx" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/admin</argument>
+    </service>
+    <service id=".security.request_matcher.qecNRWT" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/profil</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -4838,6 +4882,9 @@
     <service id="swiftmailer.mailer.default.plugin.messagelogger" class="Swift_Plugins_MessageLogger" public="true">
       <tag name="swiftmailer.default.plugin"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AdminController" class="App\Controller\AdminController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\HomeController" class="App\Controller\HomeController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -4856,10 +4903,14 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CreateMyQuizz" class="App\Form\CreateMyQuizz" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\CreateMyQuizz" class="App\Form\CreateMyQuizz" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ProfilUpdateForm" class="App\Form\ProfilUpdateForm" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ProfilUpdateForm" class="App\Form\ProfilUpdateForm" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UpdateUserByAdmin" class="App\Form\UpdateUserByAdmin" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\UpdateUserByAdmin" class="App\Form\UpdateUserByAdmin" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\CategorieRepository" class="App\Repository\CategorieRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PropertyRepository" class="App\Repository\PropertyRepository" autowire="true" abstract="true"/>
@@ -5163,11 +5214,13 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.IFR7NM8" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.2xj38p9" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\CreateMyQuizz" type="service" id="App\Form\CreateMyQuizz"/>
         <argument key="App\Form\ProfilUpdateForm" type="service" id="App\Form\ProfilUpdateForm"/>
         <argument key="App\Form\RegistrationFormType" type="service" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\UpdateUserByAdmin" type="service" id="App\Form\UpdateUserByAdmin"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service" id="form.type.file"/>
@@ -5199,8 +5252,8 @@
       <argument type="service" id="security.access.authenticated_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
-    <service id="debug.security.voter.security.access.simple_role_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
-      <argument type="service" id="security.access.simple_role_voter"/>
+    <service id="debug.security.voter.security.access.role_hierarchy_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
+      <argument type="service" id="security.access.role_hierarchy_voter"/>
       <argument type="service" id="debug.event_dispatcher"/>
     </service>
     <service id="debug.security.voter.security.access.expression_voter" class="Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter">
@@ -5391,6 +5444,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\AdminController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\AdminController"/>
+      <argument>App\Controller\AdminController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
     <service id=".service_locator.pNNo5z3.App\Controller\HomeController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\HomeController"/>
       <argument>App\Controller\HomeController</argument>
@@ -5542,7 +5601,7 @@
     <service id="debug.security.access.decision_manager.inner" class="Symfony\Component\Security\Core\Authorization\AccessDecisionManager" public="false">
       <argument type="iterator">
         <argument type="service" id="debug.security.voter.security.access.authenticated_voter"/>
-        <argument type="service" id="debug.security.voter.security.access.simple_role_voter"/>
+        <argument type="service" id="debug.security.voter.security.access.role_hierarchy_voter"/>
         <argument type="service" id="debug.security.voter.security.access.expression_voter"/>
       </argument>
       <argument>affirmative</argument>

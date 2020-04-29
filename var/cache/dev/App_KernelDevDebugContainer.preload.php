@@ -6,7 +6,7 @@
 use Symfony\Component\DependencyInjection\Dumper\Preloader;
 
 require dirname(__DIR__, 3).'/vendor/autoload.php';
-require __DIR__.'/ContainerFWKX4lx/App_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerXwP4YWv/App_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -27,14 +27,17 @@ $classes[] = 'Symfony\Component\HttpClient\HttpClient';
 $classes[] = 'Symfony\Bridge\Monolog\Logger';
 $classes[] = 'Symfony\Component\HttpFoundation\RequestMatcher';
 $classes[] = 'Symfony\Component\DependencyInjection\ServiceLocator';
+$classes[] = 'App\Controller\AdminController';
 $classes[] = 'App\Controller\HomeController';
 $classes[] = 'App\Controller\PropertyController';
 $classes[] = 'App\Controller\QuestionController';
 $classes[] = 'App\Controller\RegistrationController';
 $classes[] = 'App\Controller\SecurityController';
 $classes[] = 'App\Controller\UserController';
+$classes[] = 'App\Form\CreateMyQuizz';
 $classes[] = 'App\Form\ProfilUpdateForm';
 $classes[] = 'App\Form\RegistrationFormType';
+$classes[] = 'App\Form\UpdateUserByAdmin';
 $classes[] = 'App\Repository\CategorieRepository';
 $classes[] = 'App\Repository\PropertyRepository';
 $classes[] = 'App\Repository\QuestionRepository';
@@ -131,7 +134,7 @@ $classes[] = 'Symfony\Component\Security\Core\Authorization\Voter\TraceableVoter
 $classes[] = 'Symfony\Component\Security\Core\Authorization\Voter\AuthenticatedVoter';
 $classes[] = 'Symfony\Component\Security\Core\Authorization\Voter\ExpressionVoter';
 $classes[] = 'Symfony\Component\Security\Core\Authorization\ExpressionLanguage';
-$classes[] = 'Symfony\Component\Security\Core\Authorization\Voter\RoleVoter';
+$classes[] = 'Symfony\Component\Security\Core\Authorization\Voter\RoleHierarchyVoter';
 $classes[] = 'Symfony\Bundle\SecurityBundle\EventListener\VoteListener';
 $classes[] = 'Symfony\Component\Stopwatch\Stopwatch';
 $classes[] = 'Symfony\Component\DependencyInjection\Config\ContainerParametersResourceChecker';

@@ -15,6 +15,9 @@ return [
     '_profiler_router' => [['token'], ['_controller' => 'web_profiler.controller.router::panelAction'], [], [['text', '/router'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
+    'app_admin_index' => [[], ['_controller' => 'App\\Controller\\AdminController::index'], [], [['text', '/admin']], [], []],
+    'app_admin_userslist' => [[], ['_controller' => 'App\\Controller\\AdminController::usersList'], [], [['text', '/userList']], [], []],
+    'app_admin_edituser' => [['id'], ['_controller' => 'App\\Controller\\AdminController::editUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/utilisateurs/modifier']], [], []],
     'app_home_index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], []],
     'app_property_index' => [[], ['_controller' => 'App\\Controller\\PropertyController::index'], [], [['text', '/question']], [], []],
     'app_question_listall' => [[], ['_controller' => 'App\\Controller\\QuestionController::listAll'], [], [['text', '/list']], [], []],
@@ -27,6 +30,7 @@ return [
     'app_user_profil' => [[], ['_controller' => 'App\\Controller\\UserController::profil'], [], [['text', '/profil']], [], []],
     'app_user_profilid' => [['id'], ['_controller' => 'App\\Controller\\UserController::profilID'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/profil']], [], []],
     'app_user_updateprofil' => [[], ['_controller' => 'App\\Controller\\UserController::updateProfil'], [], [['text', '/update_profil']], [], []],
+    'app_user_createmyquizz' => [[], ['_controller' => 'App\\Controller\\UserController::CreateMyQuizz'], [], [['text', '/create_my_quizz']], [], []],
     'profil' => [[], ['_controller' => 'App\\Controller\\UserController::profil'], [], [['text', '/profil']], [], []],
     'login' => [[], [], [], [['text', '/login']], [], []],
 ];
