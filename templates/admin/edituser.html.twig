@@ -4,5 +4,8 @@
 
 {% block body %}
     <h1>Modifier un utilisateur</h1>
+    {% for users in user %}
+        <h3>Profil de {{ users.email }}</h3>
+    {% endfor %}
     {{ form(userForm) }}
 {% endblock %}

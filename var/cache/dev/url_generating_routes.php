@@ -16,7 +16,7 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], []],
     'app_admin_index' => [[], ['_controller' => 'App\\Controller\\AdminController::index'], [], [['text', '/admin']], [], []],
-    'app_admin_userslist' => [[], ['_controller' => 'App\\Controller\\AdminController::usersList'], [], [['text', '/userList']], [], []],
+    'app_admin_userslist' => [[], ['_controller' => 'App\\Controller\\AdminController::usersList'], [], [['text', '/admin/userlist']], [], []],
     'app_admin_edituser' => [['id'], ['_controller' => 'App\\Controller\\AdminController::editUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/utilisateurs/modifier']], [], []],
     'app_home_index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], []],
     'app_property_index' => [[], ['_controller' => 'App\\Controller\\PropertyController::index'], [], [['text', '/question']], [], []],

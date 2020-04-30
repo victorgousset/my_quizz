@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\BrowserKit\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class AdminController extends AbstractController
@@ -24,7 +25,7 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/userList")
+     * @Route("/admin/userlist")
      */
     public function usersList()
     {
@@ -39,13 +40,35 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/utilisateurs/modifier/{id}")
      */
-    public function editUser($id)
+    public function editUser($id, \Symfony\Component\HttpFoundation\Request $request)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->findBy(array('id' => $id));
 
-        $form = $this->createForm(UpdateUserByAdmin::class, $user);
+        if ($user == null)
+        {
+            return new Response('Cet utilisateur n\'existe pas');
+        }
 
-        return new Response('a');
+        $form = $this->createForm(UpdateUserByAdmin::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $u = $em->getRepository(User::class)->find($id);
+            $u->setEmail($data['email']);
+            $em->flush();
+
+            $this->addFlash('message', 'Utilisateur modifié avec succès');
+            return $this->redirectToRoute('profil');
+        }
+
+        return $this->render('admin/edituser.html.twig', [
+            'userForm' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 
 }

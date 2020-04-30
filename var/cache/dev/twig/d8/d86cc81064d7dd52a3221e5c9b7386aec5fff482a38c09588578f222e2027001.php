@@ -91,29 +91,29 @@ class __TwigTemplate_3f2af7dc36476f49dbd7c9a9b09ef56967f0b6ec783ddcfb1330b963cf3
         <th>ID</th>
         <th>Email</th>
         <th>Rôles</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
         ";
-        // line 15
-        echo "        ";
+        // line 16
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 15, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 16, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
-            // line 16
+            // line 17
             echo "            <tr>
                 <td>";
-            // line 17
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 17), "html", null, true);
+            // line 18
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 18), "html", null, true);
             echo "</td>
                 <td>";
-            // line 18
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 18), "html", null, true);
+            // line 19
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 19), "html", null, true);
             echo "</td>
                 <td>
                     ";
             // line 21
-            echo "                    ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(twig_get_attribute($this->env, $this->source, $context["user"], "roles", [], "any", false, false, false, 21));
             foreach ($context['_seq'] as $context["_key"] => $context["role"]) {
@@ -137,20 +137,28 @@ $context["role"], "ROLE_ADMIN")) {
             $context = array_intersect_key($context, $_parent) + $_parent;
             // line 28
             echo "                </td>
+                <td><a href=\"/admin/utilisateurs/modifier/";
+            // line 29
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 29), "html", null, true);
+            echo "\"><button class=\"btn btn-warning\">Modifier</button></a></td>
+                <td><a href=\"/admin/utilisateurs/supprimer/";
+            // line 30
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 30), "html", null, true);
+            echo "\"><button class=\"btn btn-danger\">Supprimer</button></a></td>
             </tr>
 
         ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 32
+            // line 34
             echo "            <p>Aucun utilisateur inscrit</p>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 34
+        // line 36
         echo "        </tbody>
     </table>
 ";
@@ -174,7 +182,7 @@ $context["role"], "ROLE_ADMIN")) {
 
     public function getDebugInfo()
     {
-        return array (  154 => 34,  147 => 32,  139 => 28,  133 => 27,  129 => 25,  127 => 24,  124 => 23,  121 => 22,  116 => 21,  111 => 18,  107 => 17,  104 => 16,  98 => 15,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  162 => 36,  155 => 34,  146 => 30,  142 => 29,  139 => 28,  133 => 27,  129 => 25,  127 => 24,  124 => 23,  121 => 22,  117 => 21,  112 => 19,  108 => 18,  105 => 17,  100 => 16,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -190,15 +198,15 @@ $context["role"], "ROLE_ADMIN")) {
         <th>ID</th>
         <th>Email</th>
         <th>Rôles</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
-        {# On boucle sur les utilisateurs #}
         {% for user in users %}
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>
-                    {# On boucle sur les rôles #}
                     {% for role in user.roles %}
                         {% if role == \"ROLE_USER\" %}
                             Utilisateur
@@ -207,6 +215,8 @@ $context["role"], "ROLE_ADMIN")) {
                         {% endif %}
                     {% endfor %}
                 </td>
+                <td><a href=\"/admin/utilisateurs/modifier/{{ user.id }}\"><button class=\"btn btn-warning\">Modifier</button></a></td>
+                <td><a href=\"/admin/utilisateurs/supprimer/{{ user.id }}\"><button class=\"btn btn-danger\">Supprimer</button></a></td>
             </tr>
 
         {% else %}

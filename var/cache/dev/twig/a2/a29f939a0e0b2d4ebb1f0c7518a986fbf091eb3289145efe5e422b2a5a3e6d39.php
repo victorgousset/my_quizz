@@ -94,7 +94,7 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
             echo "</li>
     </ul>
 
-    <a href=\"#\"><button class=\"btn btn-danger\">Modifier le profil</button></a>
+    <a href=\"/update_profil\"><button class=\"btn btn-danger\">Modifier le profil</button></a>
     <a href=\"";
             // line 20
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_logout");
@@ -149,7 +149,7 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
         <li>Mail: {{ app.user.username }}</li>
     </ul>
 
-    <a href=\"#\"><button class=\"btn btn-danger\">Modifier le profil</button></a>
+    <a href=\"/update_profil\"><button class=\"btn btn-danger\">Modifier le profil</button></a>
     <a href=\"{{ path('app_logout') }}\"><button class=\"btn btn-danger\">Déconexion</button></a>
 
 
