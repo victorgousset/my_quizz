@@ -18,6 +18,7 @@ return [
     'app_admin_index' => [[], ['_controller' => 'App\\Controller\\AdminController::index'], [], [['text', '/admin']], [], []],
     'app_admin_userslist' => [[], ['_controller' => 'App\\Controller\\AdminController::usersList'], [], [['text', '/admin/userlist']], [], []],
     'app_admin_edituser' => [['id'], ['_controller' => 'App\\Controller\\AdminController::editUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/utilisateurs/modifier']], [], []],
+    'app_admin_deleteuser' => [['id'], ['_controller' => 'App\\Controller\\AdminController::deleteUser'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/admin/utilisateurs/supprimer']], [], []],
     'app_home_index' => [[], ['_controller' => 'App\\Controller\\HomeController::index'], [], [['text', '/']], [], []],
     'app_property_index' => [[], ['_controller' => 'App\\Controller\\PropertyController::index'], [], [['text', '/question']], [], []],
     'app_question_listall' => [[], ['_controller' => 'App\\Controller\\QuestionController::listAll'], [], [['text', '/list']], [], []],

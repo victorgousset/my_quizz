@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+    <div align="center">
+        <a href="/admin/userlist"><button class="btn btn-primary">Liste des Utilisateurs</button></a><br><br>
+        <a href="/admin/quizz"><button class="btn btn-primary">Gérer les quizz</button></a><br><br>
+        <a href="/admin/quizz/create"><button class="btn btn-primary">Créer un quizz</button></a>
+    </div>
+
+{% endblock %}

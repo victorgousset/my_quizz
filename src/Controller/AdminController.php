@@ -71,4 +71,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/admin/utilisateurs/supprimer/{id}")
+     */
+    public function deleteUser($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $u = $em->getRepository(User::class)->find($id);
+        $em->remove($u);
+        $em->flush();
+
+        return $this->redirect('/admin/userlist');
+    }
+
 }

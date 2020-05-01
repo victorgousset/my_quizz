@@ -48,13 +48,16 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/admin/utilisateurs/modifier/([^/]++)(*:206)'
-                .'|/list/([^/]++)(*:228)'
-                .'|/question/([^/]++)(?'
-                    .'|(*:257)'
-                    .'|/([^/]++)(*:274)'
+                .'|/admin/utilisateurs/(?'
+                    .'|modifier/([^/]++)(*:209)'
+                    .'|supprimer/([^/]++)(*:235)'
                 .')'
-                .'|/profil/([^/]++)(*:299)'
+                .'|/list/([^/]++)(*:258)'
+                .'|/question/([^/]++)(?'
+                    .'|(*:287)'
+                    .'|/([^/]++)(*:304)'
+                .')'
+                .'|/profil/([^/]++)(*:329)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -65,11 +68,12 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        206 => [[['_route' => 'app_admin_edituser', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, true, null]],
-        228 => [[['_route' => 'id', '_controller' => 'App\\Controller\\QuestionController::index'], ['id'], null, null, false, true, null]],
-        257 => [[['_route' => 'app_question_selectxquestion', '_controller' => 'App\\Controller\\QuestionController::selectXQuestion'], ['categorie'], null, null, false, true, null]],
-        274 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
-        299 => [
+        209 => [[['_route' => 'app_admin_edituser', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, true, null]],
+        235 => [[['_route' => 'app_admin_deleteuser', '_controller' => 'App\\Controller\\AdminController::deleteUser'], ['id'], null, null, false, true, null]],
+        258 => [[['_route' => 'id', '_controller' => 'App\\Controller\\QuestionController::index'], ['id'], null, null, false, true, null]],
+        287 => [[['_route' => 'app_question_selectxquestion', '_controller' => 'App\\Controller\\QuestionController::selectXQuestion'], ['categorie'], null, null, false, true, null]],
+        304 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
+        329 => [
             [['_route' => 'app_user_profilid', '_controller' => 'App\\Controller\\UserController::profilID'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
