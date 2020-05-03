@@ -101,9 +101,10 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
             echo "\"><button class=\"btn btn-danger\">Déconexion</button></a>
 
 
+
 ";
         }
-        // line 24
+        // line 25
         echo "
 ";
         
@@ -126,7 +127,7 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
 
     public function getDebugInfo()
     {
-        return array (  107 => 24,  100 => 20,  93 => 16,  87 => 12,  85 => 11,  82 => 10,  76 => 7,  73 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
+        return array (  108 => 25,  100 => 20,  93 => 16,  87 => 12,  85 => 11,  82 => 10,  76 => 7,  73 => 6,  71 => 5,  68 => 4,  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -151,6 +152,7 @@ class __TwigTemplate_f90051fa56544d45c0ab672b9288da7beed51f041867fa61f0fbf7a0cb6
 
     <a href=\"/update_profil\"><button class=\"btn btn-danger\">Modifier le profil</button></a>
     <a href=\"{{ path('app_logout') }}\"><button class=\"btn btn-danger\">Déconexion</button></a>
+
 
 
 {% endif %}

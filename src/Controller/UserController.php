@@ -8,6 +8,7 @@ use http\Client\Curl\User;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 
 class UserController extends AbstractController
@@ -49,12 +50,29 @@ class UserController extends AbstractController
      * @Route("/update_profil")
      */
 
-    public function updateProfil()
+    public function updateProfil(\Symfony\Component\HttpFoundation\Request $request, UserInterface $user)
     {
-
         $form = $this->createForm(ProfilUpdateForm::class);
+        $form->handleRequest($request);
 
-        return $this->render('User/profil_modification.html.twig', ['updateForm' => $form->createView()]);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $data = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $u = $em->getRepository(\App\Entity\User::class)->find($user->getId());
+            $u->setEmail($data['email']);
+            $u->setPassword($data['password']);
+            $em->flush();
+
+            $this->addFlash('message', 'Compte modifié avec succès');
+            return $this->redirectToRoute('profil');
+        }
+
+        return $this->render('admin/edituser.html.twig', [
+            'userForm' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 
     /**

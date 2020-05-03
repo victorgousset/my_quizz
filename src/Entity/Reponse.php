@@ -14,17 +14,17 @@ class Reponse
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    public $id;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $id_question;
+    public $id_question;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $reponse;
+    public $reponse;
 
     /**
      * @ORM\Column(type="boolean")

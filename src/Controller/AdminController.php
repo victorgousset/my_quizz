@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Categorie;
 use App\Entity\User;
 use App\Form\UpdateUserByAdmin;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,7 +66,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('profil');
         }
 
-        return $this->render('admin/edituser.html.twig', [
+        return $this->render('user/profil.html.twig', [
             'userForm' => $form->createView(),
             'user' => $user,
         ]);
@@ -82,6 +83,32 @@ class AdminController extends AbstractController
         $em->flush();
 
         return $this->redirect('/admin/userlist');
+    }
+
+    /**
+     * @Route("/admin/quizzlist")
+     */
+    public function quizzlist()
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        $quizz = $this->getDoctrine()->getRepository(Categorie::class)->findAll();
+        return $this->render('admin/quizz.html.twig', [
+            'quizz' => $quizz,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/quizz/supprimer/{id}")
+     */
+    public function deleteQuizz($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $u = $em->getRepository(Categorie::class)->find($id);
+        $em->remove($u);
+        $em->flush();
+
+        return $this->redirect('/admin/quizzlist');
     }
 
 }

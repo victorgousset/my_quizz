@@ -15,6 +15,7 @@ return [
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/admin' => [[['_route' => 'app_admin_index', '_controller' => 'App\\Controller\\AdminController::index'], null, null, null, false, false, null]],
         '/admin/userlist' => [[['_route' => 'app_admin_userslist', '_controller' => 'App\\Controller\\AdminController::usersList'], null, null, null, false, false, null]],
+        '/admin/quizzlist' => [[['_route' => 'app_admin_quizzlist', '_controller' => 'App\\Controller\\AdminController::quizzlist'], null, null, null, false, false, null]],
         '/' => [[['_route' => 'app_home_index', '_controller' => 'App\\Controller\\HomeController::index'], null, null, null, false, false, null]],
         '/question' => [[['_route' => 'app_property_index', '_controller' => 'App\\Controller\\PropertyController::index'], null, null, null, false, false, null]],
         '/list' => [[['_route' => 'app_question_listall', '_controller' => 'App\\Controller\\QuestionController::listAll'], null, null, null, false, false, null]],
@@ -48,16 +49,22 @@ return [
                         .'|(*:159)'
                     .')'
                 .')'
-                .'|/admin/utilisateurs/(?'
-                    .'|modifier/([^/]++)(*:209)'
-                    .'|supprimer/([^/]++)(*:235)'
+                .'|/admin/(?'
+                    .'|utilisateurs/(?'
+                        .'|modifier/([^/]++)(*:212)'
+                        .'|supprimer/([^/]++)(*:238)'
+                    .')'
+                    .'|quizz/supprimer/([^/]++)(*:271)'
                 .')'
-                .'|/list/([^/]++)(*:258)'
-                .'|/question/([^/]++)(?'
-                    .'|(*:287)'
-                    .'|/([^/]++)(*:304)'
+                .'|/list/([^/]++)(*:294)'
+                .'|/q(?'
+                    .'|uestion/([^/]++)(?'
+                        .'|(*:326)'
+                        .'|/([^/]++)(*:343)'
+                    .')'
+                    .'|question/([^/]++)/([^/]++)(*:378)'
                 .')'
-                .'|/profil/([^/]++)(*:329)'
+                .'|/profil/([^/]++)(*:403)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -68,12 +75,14 @@ return [
         136 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
-        209 => [[['_route' => 'app_admin_edituser', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, true, null]],
-        235 => [[['_route' => 'app_admin_deleteuser', '_controller' => 'App\\Controller\\AdminController::deleteUser'], ['id'], null, null, false, true, null]],
-        258 => [[['_route' => 'id', '_controller' => 'App\\Controller\\QuestionController::index'], ['id'], null, null, false, true, null]],
-        287 => [[['_route' => 'app_question_selectxquestion', '_controller' => 'App\\Controller\\QuestionController::selectXQuestion'], ['categorie'], null, null, false, true, null]],
-        304 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
-        329 => [
+        212 => [[['_route' => 'app_admin_edituser', '_controller' => 'App\\Controller\\AdminController::editUser'], ['id'], null, null, false, true, null]],
+        238 => [[['_route' => 'app_admin_deleteuser', '_controller' => 'App\\Controller\\AdminController::deleteUser'], ['id'], null, null, false, true, null]],
+        271 => [[['_route' => 'app_admin_deletequizz', '_controller' => 'App\\Controller\\AdminController::deleteQuizz'], ['id'], null, null, false, true, null]],
+        294 => [[['_route' => 'id', '_controller' => 'App\\Controller\\QuestionController::index'], ['id'], null, null, false, true, null]],
+        326 => [[['_route' => 'app_question_selectxquestion', '_controller' => 'App\\Controller\\QuestionController::selectXQuestion'], ['categorie'], null, null, false, true, null]],
+        343 => [[['_route' => 'app_question_getquestion', '_controller' => 'App\\Controller\\QuestionController::getQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
+        378 => [[['_route' => 'app_question_getxquestion', '_controller' => 'App\\Controller\\QuestionController::getXQuestion'], ['categorie', 'nombre'], null, null, false, true, null]],
+        403 => [
             [['_route' => 'app_user_profilid', '_controller' => 'App\\Controller\\UserController::profilID'], ['id'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

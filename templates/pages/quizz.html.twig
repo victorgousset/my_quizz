@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for questions in question %}
+
+            <ul>
+                <li>
+                    {{ questions.question }}
+                </li>
+                <p style="color: green">{{ BonneReponse[questions.id - 1] }}</p>
+                <p style="color: red">{{ MauvaiseReponse[questions.id - 1] }},
+                {{ MauvaiseReponseDeux[questions.id - 1] }}</p>
+            </ul>
+    {% endfor %}
+
+{% endblock %}

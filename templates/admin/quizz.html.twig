@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+    <h1>Liste des Quizz</h1>
+    <table>
+        <thead>
+        <th>ID</th>
+        <th>Quizz</th>
+        <th>Supprimer</th>
+        </thead>
+        <tbody>
+
+        {% for quizzs in quizz %}
+            <tr>
+                <td>{{ quizzs.id }}</td>
+                <td>{{ quizzs.name }}</td>
+                <td><a href="/admin/quizz/supprimer/{{ quizzs.id }}"><button class="btn btn-danger">Supprimer</button></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+{% endblock %}

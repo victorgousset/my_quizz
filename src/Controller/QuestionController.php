@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Entity\Categorie;
 use App\Entity\Question;
 use App\Entity\Reponse;
+use phpDocumentor\Reflection\Types\Compound;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,7 +69,7 @@ class QuestionController extends AbstractController
     }
 
     /**
-     * @Route("question/{categorie}/{nombre}")
+     * @Route("qquestion/{categorie}/{nombre}")
      * @return Response
      */
 
@@ -133,6 +134,38 @@ class QuestionController extends AbstractController
         //return $this->render('pages/question.html.twig', compact('questionString'));
         //return $this->render('pages/question.html.twig', compact(['question' => $question, 'mauvaise_reponse' => '']));
 
+    }
+
+    /**
+     * @Route("question/{categorie}/{nombre}")
+     * @return Response
+     */
+
+    public function getQuestion($categorie, $nombre)
+    {
+
+        $question = $this->getDoctrine()->getRepository(Question::class)
+            ->findBy(['id_categorie' => $categorie]);
+
+        $BonneReponse = [];
+        $MauvaiseReponse = [];
+        $MauvaiseReponseDeux = [];
+
+        $id = $categorie . "0";
+
+        for ($i = 1; $i <= $id; $i++)
+        {
+            $reponses = $this->getDoctrine()->getRepository(Reponse::class)
+                ->findBy(['id_question' => $i]);
+            array_push($BonneReponse, $reponses[0]->reponse);
+
+            $Mreponse = $this->getDoctrine()->getRepository(Reponse::class)
+                ->findBy(['id_question' => $i, 'reponse_expected' => 0]);
+            array_push($MauvaiseReponse, $Mreponse[0]->reponse);
+            array_push($MauvaiseReponseDeux, $reponses[2]->reponse);
+        }
+
+        return $this->render('pages/quizz.html.twig', compact('question', 'BonneReponse', 'MauvaiseReponse', 'MauvaiseReponseDeux'));
     }
 
 }
